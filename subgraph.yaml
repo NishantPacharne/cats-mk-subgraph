@@ -1,0 +1,31 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: KoalasMarketplace
+    network: mainnet
+    source:
+      address: "0xFba9fad8bBcd4387A0C1f9eBad8ECF2f4c99fCA1"
+      abi: KoalasMarketplace
+      startBlock: 14201501
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketItem
+        - User
+      abis:
+        - name: KoalasMarketplace
+          file: ./abis/KoalasMarketplace.json
+      eventHandlers:
+        - event: MarketItemListed(indexed uint256,address,address,uint256,bool)
+          handler: handleMarketItemListed
+        - event: MarketListingRemoved(indexed uint256)
+          handler: handleMarketListingRemoved
+        - event: MarketSaleCreated(indexed uint256,address,address,uint256,bool)
+          handler: handleMarketSaleCreated
+        - event: PriceUpdated(indexed uint256,uint256)
+          handler: handlePriceUpdated
+      file: ./src/koalas-marketplace.ts
