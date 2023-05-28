@@ -1,5 +1,5 @@
 {
-  "name": "kai-cats-marketplace",
+  "name": "kai-cats-marketplace-v2",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
